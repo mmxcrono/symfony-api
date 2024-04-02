@@ -2,6 +2,14 @@
 
 Set up symfony with docker
 
+## Symfony CLI
+
+For Mac
+
+```sh
+brew install symfony-cli/tap/symfony-cli
+```
+
 ## Setup steps history
 
 - Install `php` through `homebrew`

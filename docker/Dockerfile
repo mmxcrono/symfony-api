@@ -33,7 +33,6 @@ fi
 
 WORKDIR /var/www/html
 COPY ./src .
-COPY ./src/.env.example .env
 
 RUN if [[ "$APP_ENV" == "dev" ]]; then \
     composer install \
