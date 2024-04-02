@@ -10,6 +10,12 @@ For Mac
 brew install symfony-cli/tap/symfony-cli
 ```
 
+## Make commands
+
+`make build`
+  - Builds with docker build
+  - Enables XDEBUG
+
 ## Setup steps history
 
 - Install `php` through `homebrew`
