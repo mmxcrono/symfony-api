@@ -1,11 +1,11 @@
 FROM php:8.2.10-fpm-alpine
 
-
 ARG APP_ENV=dev
 ARG USER=nginx
 ARG INSTALL_XDEBUG=N
 
 RUN echo "UTC" > /etc/timezone
+
 
 RUN apk add --update \
     --no-cache \
@@ -20,6 +20,10 @@ RUN apk add --update \
     bash \
     vim vim-doc vim-tutor \
     composer
+
+RUN wget 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' && bash setup.alpine.sh
+
+RUN apk add --update symfony-cli
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
@@ -64,7 +68,6 @@ COPY ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-
 EXPOSE 80
 
 # Allow nginx to bind to privileged ports
@@ -95,4 +98,4 @@ fi
 
 USER $USER
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD symfony server:start --no-tls --port=80 --dir=public

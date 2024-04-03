@@ -15,3 +15,11 @@ run:
 	--add-host=host.docker.internal:host-gateway \
 	-v ./src:/var/www/html \
 	 $(LOCAL_REPO_TAG)
+
+.PHONY: stop
+stop:
+	docker stop $(CONTAINER)
+
+.PHONY: rm
+rm:
+	docker rm $(CONTAINER)
